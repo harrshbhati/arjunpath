@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gp Capt Naval Saini (Retd.) | Arjun Path Academy</title>
+    
+    <!-- Favions -->
+    <link rel="icon" type="image/png" href="asset/favicon.png">
+    <link rel="shortcut icon" href="asset/logo.png">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom Base Styles (Using variables from style.css) -->
+    <link rel="stylesheet" href="style.css">
+    
     <style>
-        :root {
-            --navy: #0a192f;
-            --gold: #fdbb2d;
-            --white: #ffffff;
-            --text: #334155;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
-        
         /* 1. FULL SCREEN VIDEO FIX */
         body { 
             background-color: var(--navy); 
-            color: var(--text); 
+            color: var(--text-main); 
             line-height: 1.8;
             min-height: 100vh;
         }
@@ -39,139 +44,203 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 25, 47, 0.75); /* Adjust opacity to see more/less of the video */
+            background: linear-gradient(135deg, rgba(11, 25, 44, 0.9) 0%, rgba(11, 25, 44, 0.6) 100%);
             z-index: -1; /* Above video, below text */
         }
 
         /* HEADER */
         header { 
-            background: var(--navy); 
+            background: rgba(11, 25, 44, 0.95); 
+            backdrop-filter: blur(10px);
             padding: 1rem 5%; 
             position: sticky; 
             top: 0; 
             z-index: 1000; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-sm);
         }
-        .logo { color: white; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; text-decoration: none; }
-        .logo span { color: var(--gold); }
 
         /* HERO SECTION */
         .profile-hero {
             background: transparent;
-            color: white;
+            color: var(--white);
             padding: 100px 10% 60px;
             text-align: center;
         }
-        .profile-hero h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 4px 10px rgba(0,0,0,0.5); }
-        .profile-hero p { color: var(--gold); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        .profile-hero h1 { 
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            margin-bottom: 10px; 
+            color: var(--white);
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        }
+        .profile-hero p { 
+            color: var(--gold); 
+            font-weight: 700; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+        }
 
         /* CONTAINER */
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto 80px;
             display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 40px;
+            grid-template-columns: 380px 1fr;
+            gap: 50px;
             padding: 0 20px;
         }
 
         /* GLASS EFFECT CARDS */
         .sidebar, .message-card {
-            background: rgba(255, 255, 255, 0.95); /* High opacity white for readability */
-            backdrop-filter: blur(8px);
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.97); /* High opacity white for readability */
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
             height: fit-content;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .mentor-full-img {
             width: 100%;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 4px solid #eee;
+            border-radius: var(--radius-md);
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-md);
         }
 
-        .info-box h3 { color: var(--navy); margin-bottom: 15px; border-bottom: 2px solid var(--gold); display: inline-block; }
+        .info-box h3 { 
+            color: var(--navy); 
+            margin-bottom: 20px; 
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--gold); 
+            display: inline-block; 
+            font-family: var(--font-heading);
+            letter-spacing: 1px;
+        }
         .info-list { list-style: none; }
-        .info-list li { margin-bottom: 10px; font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
-        .info-list li::before { content: "🎖️"; }
+        .info-list li { 
+            margin-bottom: 15px; 
+            font-size: 1rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            color: var(--text-main);
+            font-weight: 500;
+        }
+        .info-list li i { 
+            color: var(--gold); 
+            width: 30px;
+            height: 30px;
+            background: var(--gold-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.9rem;
+        }
 
-        .message-card h2 { color: var(--navy); margin-bottom: 25px; font-size: 2.2rem; }
-        .content-para { margin-bottom: 20px; font-size: 1.1rem; color: #334155; text-align: justify; }
+        .message-card h2 { 
+            color: var(--navy); 
+            margin-bottom: 30px; 
+            font-size: 2.2rem; 
+            position: relative;
+        }
+        .message-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+        
+        .content-para { 
+            margin-bottom: 20px; 
+            font-size: 1.1rem; 
+            color: var(--text-main); 
+            text-align: justify; 
+            line-height: 1.8;
+        }
         
         .highlight-box {
-            background: rgba(10, 25, 47, 0.05);
+            background: var(--off-white);
             border-left: 5px solid var(--gold);
-            padding: 25px;
-            margin: 30px 0;
-            font-weight: 600;
+            padding: 30px;
+            margin: 35px 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            font-weight: 500;
             color: var(--navy);
             font-style: italic;
+            font-size: 1.1rem;
+            position: relative;
         }
-
-        .cta-btn {
-            display: inline-block;
-            background: var(--gold);
-            color: black;
-            padding: 15px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            margin-top: 10px;
-            transition: 0.3s;
-            text-align: center;
+        .highlight-box::before {
+            content: '\f10d'; /* quote-left icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            color: var(--gold-light);
+            opacity: 0.5;
         }
-        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(253,187,45,0.4); }
 
         /* FOOTER - Transparent to show video */
-        footer { 
+        .profile-footer {
             text-align: center; 
-            padding: 60px 20px; 
-            background: rgba(10, 25, 47, 0.8); 
-            color: white; 
-            font-weight: 600;
-            margin-top: 50px;
+            padding: 40px 20px; 
+            background: rgba(11, 25, 44, 0.9); 
+            color: rgba(255,255,255,0.7); 
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
             .container { grid-template-columns: 1fr; }
-            .profile-hero h1 { font-size: 2.2rem; }
+            .sidebar { max-width: 500px; margin: 0 auto; }
         }
     </style>
 </head>
 <body>
 
-    <video autoplay muted loop playsinline class="video-background">
+    <video autoplay muted loop playsinline class="video-background" id="heroVideo">
         <source src="asset/iaf.mp4" type="video/mp4">
     </video>
     <div class="video-overlay"></div>
 
     <header>
-        <a href="index.html" class="logo">Arjun Path <span>Academy</span></a>
+        <a href="index.html" class="logo">
+            Arjun Path <span>Academy</span>
+        </a>
     </header>
 
-    <div class="profile-hero">
+    <div class="profile-hero" data-aos="fade-down" data-aos-duration="1000">
         <h1>Gp Capt Naval Saini (Retd.)</h1>
-        <p>Former Deputy President & Assessor at SSB Boards</p>
+        <p><i class="fa-solid fa-star"></i> Former Deputy President & Assessor at SSB Boards <i class="fa-solid fa-star"></i></p>
     </div>
 
     <div class="container">
-        <div class="sidebar">
+        <div class="sidebar" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
             <img src="asset/Naval sir_edited.avif" alt="Naval Saini" class="mentor-full-img">
             <div class="info-box">
                 <h3>Credentials</h3>
                 <ul class="info-list">
-                    <li>30+ Years Air Force Service</li>
-                    <li>10+ Years as SSB Assessor</li>
-                    <li>Expert Personality Profiler</li>
-                    <li>Holistic Interview Specialist</li>
+                    <li><i class="fa-solid fa-plane-up"></i> 30+ Years Air Force Service</li>
+                    <li><i class="fa-solid fa-clipboard-user"></i> 10+ Years as SSB Assessor</li>
+                    <li><i class="fa-solid fa-brain"></i> Expert Personality Profiler</li>
+                    <li><i class="fa-solid fa-user-group"></i> Holistic Interview Specialist</li>
                 </ul>
             </div>
-            <a href="https://wa.me/9482577331" class="cta-btn" style="width: 100%;">Direct Enquiry</a>
+            <a href="https://wa.me/9482577331" class="btn btn-gold" style="width: 100%; margin-top: 20px; justify-content: center;">
+                <i class="fa-brands fa-whatsapp"></i> Direct Enquiry
+            </a>
         </div>
 
-        <div class="message-card">
+        <div class="message-card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
             <h2>A Message to the Future Officers</h2>
             
             <p class="content-para">
@@ -186,16 +255,29 @@
                 At <strong>Arjun Path SSB Training Academy</strong>, we believe in a holistic approach to preparation, focusing on all aspects of the selection process. 
             </p>
 
-            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                <a href="index.html#results" class="cta-btn">View Success Stories</a>
-                <a href="index.html" class="cta-btn" style="background: var(--navy); color: white;">Back to Home</a>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 40px;">
+                <a href="index.html#results" class="btn btn-gold">
+                    <i class="fa-solid fa-trophy"></i> View Success Stories
+                </a>
+                <a href="index.html" class="btn btn-outline-navy">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Home
+                </a>
             </div>
         </div>
     </div>
 
-    <footer>
-        &copy; 2026 Arjun Path Defence Academy | Jai Hind
+    <footer class="profile-footer">
+        &copy; 2026 Arjun Path Defence Academy | Jai Hind <i class="fa-solid fa-flag"></i>
     </footer>
 
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800,
+        });
+    </script>
 </body>
 </html>

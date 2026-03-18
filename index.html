@@ -1,370 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="asset/favicon.png">
-    <link rel="shortcut icon" href="asset/logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arjun Path Defence Academy | SSB & NDA Expert Coaching</title>
-    <style>
-        :root {
-            --navy: #0a192f;
-            --gold: #fdbb2d;
-            --white: #ffffff;
-            --light-gray: #f4f7f6;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
-        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-        body { color: #333; line-height: 1.6; overflow-x: hidden; background-color: var(--white); }
-
-        /* NAVIGATION */
-        header { 
-            background: var(--navy); 
-            padding: 1rem 5%; 
-            position: fixed; 
-            width: 100%; top: 0; z-index: 1000; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { color: white; font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-        .logo span { color: var(--gold); }
-        .nav-links { display: flex; list-style: none; align-items: center; }
-        .nav-links li { margin-left: 30px; }
-        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; font-size: 0.9rem; }
-        .nav-links a:hover { color: var(--gold); }
-        .menu-toggle { display: none; color: white; font-size: 1.5rem; cursor: pointer; }
-
-        /* HERO SECTION */
-        .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            overflow: hidden;
-        }
-        .hero-video {
-            position: absolute;
-            top: 50%; left: 50%;
-            min-width: 100%; min-height: 100%;
-            z-index: -2;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-        }
-        .hero-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.25); 
-            z-index: -1;
-        }
-        .hero-content { max-width: 900px; z-index: 1; padding: 20px; }
-        .badge { background: var(--gold); color: black; padding: 6px 16px; border-radius: 50px; font-weight: 700; font-size: 0.75rem; margin-bottom: 1.5rem; display: inline-block; }
-        .hero-content h1 { font-size: clamp(2.2rem, 8vw, 4rem); margin-bottom: 1rem; line-height: 1.1; font-weight: 800; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .hero-content p { font-size: clamp(1rem, 4vw, 1.25rem); margin-bottom: 2.5rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
-
-        /* BUTTONS */
-        .btn { padding: 14px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; display: inline-block; border: none; cursor: pointer; }
-        .btn-gold { background: var(--gold); color: black; margin: 5px; }
-        .btn-outline { border: 2px solid white; color: white; margin: 5px; }
-        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(253, 187, 45, 0.4); }
-
-        /* SECTIONS */
-        .section { padding: 80px 10%; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .section-title { font-size: clamp(1.8rem, 5vw, 2.8rem); color: var(--navy); margin-bottom: 1.5rem; }
-
-        /* MENTOR SECTION */
-        .mentor-img-container { position: relative; max-width: 500px; margin: 0 auto; }
-        .mentor-img { width: 100%; border-radius: 10px; position: relative; z-index: 2; display: block; }
-        .img-decor { position: absolute; top: -15px; left: -15px; width: 100%; height: 100%; border: 4px solid var(--gold); border-radius: 10px; z-index: 1; }
-        .mentor-list { list-style: none; margin: 25px 0; }
-        .mentor-list li { margin-bottom: 12px; padding-left: 30px; position: relative; font-weight: 500; }
-        .mentor-list li::before { content: "✓"; color: var(--gold); position: absolute; left: 0; font-weight: 900; }
-
-        /* WHY US CARDS */
-        .card-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px; }
-        .card { background: white; padding: 35px; border-radius: 12px; transition: 0.3s; border-bottom: 4px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .card:hover { transform: translateY(-10px); border-bottom: 4px solid var(--gold); }
-
-        .slider-container {
-    width: 100%;
-    overflow: hidden; /* Hides the slides that aren't active */
-    position: relative;
-}
-
-.slider {
-    display: flex; /* Lines up slides horizontally */
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Makes the slide smooth */
-    width: 100%;
-}
-
-.slide {
-    min-width: 100%; /* Each slide takes up the full container width */
-    padding: 20px;
-    text-align: center;
-}
-
-.dot {
-    height: 12px;
-    width: 12px;
-    margin: 0 5px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.dot.active {
-    background-color: var(--gold); /* Your gold color variable */
-}
-
-        /* ADMISSION BOT */
-        .bot-box {
-            background: white; padding: 40px; border-radius: 20px; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1); border: 1px solid #e0e0e0; 
-            display: inline-block; width: 100%; max-width: 500px; margin-top: 30px;
-        }
-        .bot-avatar { position: relative; display: inline-block; }
-        .bot-avatar img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--gold); }
-        .online-status { position: absolute; bottom: 5px; right: 5px; width: 15px; height: 15px; background: #25d366; border-radius: 50%; border: 2px solid white; }
-
-        /* GALLERY / LIGHTBOX */
-        .collage-container { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 15px; max-width: 1100px; margin: 40px auto; }
-        .collage-item { position: relative; overflow: hidden; border-radius: 10px; cursor: pointer; }
-        .collage-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .collage-item.large { grid-column: span 2; grid-row: span 2; }
-        .lightbox { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
-        .lightbox.active { display: flex; }
-        .lightbox-content { max-width: 90%; max-height: 80%; border-radius: 10px; }
-
-        /* WHATSAPP FLOAT */
-        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; z-index: 1000; text-decoration: none; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-
-        footer { background: #050c18; color: white; padding: 50px 10% 20px; text-align: center; }
-
-       @media (max-width: 850px) {
-    .menu-toggle { 
-        display: block; 
-        z-index: 1001;
-    }
-
-    .nav-links {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: fixed; /* Changed from absolute for better coverage */
-        top: 0;
-        right: -100%; /* Start off-screen */
-        width: 100%;
-        height: 100vh;
-        background: var(--navy);
-        transition: 0.4s ease-in-out;
-        z-index: 999;
-    }
-
-    .nav-links.active {
-        right: 0; /* Slide in */
-    }
-
-    .nav-links li {
-        margin: 20px 0; /* Vertical spacing for mobile */
-        margin-left: 0; 
-    }
-
-    .nav-links a {
-        font-size: 1.5rem; /* Larger text for mobile */
-    }
-
-    .grid { grid-template-columns: 1fr; text-align: center; }
-    .collage-container { grid-template-columns: repeat(2, 1fr); }
-}
-    </style>
+    
+    <!-- Favions -->
+    <link rel="icon" type="image/png" href="asset/favicon.png">
+    <link rel="shortcut icon" href="asset/logo.png">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Swiper Carousel CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <nav>
-            <div class="logo">Arjun Path <span>Academy</span></div>
-            <div class="menu-toggle" id="mobile-menu">☰</div>
+            <a href="#home" class="logo">
+                Arjun Path <span>Academy</span>
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fa-solid fa-bars"></i>
+            </div>
             <ul class="nav-links" id="nav-list">
                 <li><a href="#home">Home</a></li>
                 <li><a href="naval.html">The Mentor</a></li>
                 <li><a href="#why">Why Us?</a></li>
                 <li><a href="#results">Results</a></li>
-                <li><a href="https://wa.me/9482577331" class="btn-gold" style="padding: 8px 15px; border-radius: 4px; color: black;">Enroll Now</a></li>
+                <li><a href="https://wa.me/9482577331" class="btn btn-gold">Enroll Now</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero" id="home">
-        <video autoplay muted loop playsinline class="hero-video">
+        <video autoplay muted loop playsinline class="hero-video" id="heroVideo">
             <source src="asset/Timeline 1.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <span class="badge">ESTABLISHED DEFENCE EXCELLENCE</span>
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <span class="badge"><i class="fa-solid fa-star"></i> ESTABLISHED DEFENCE EXCELLENCE</span>
             <h1>Aim High. Train Hard. <br>Earn Your Uniform.</h1>
             <p>Direct mentorship from Gp Capt Naval Saini (Retd.), former Deputy President at SSB Boards.</p>
             <div class="hero-btns">
-                <a href="#why" class="btn btn-gold">Our Method</a>
-                <a href="#about" class="btn btn-outline">Meet The Captain</a>
+                <a href="#why" class="btn btn-gold">Our Method <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#about" class="btn btn-outline">Meet The Captain <i class="fa-solid fa-user-shield"></i></a>
             </div>
         </div>
     </section>
 
     <section class="section" id="about">
         <div class="grid">
-            <div class="mentor-img-container">
+            <div class="mentor-img-container" data-aos="fade-right" data-aos-duration="1000">
                 <a href="naval.html" style="display: block;">
                     <div class="img-decor"></div>
-                    <img src="asset/Naval sir_edited.avif" alt="Gp Capt Naval Saini" class="mentor-img" style="cursor: pointer;">
+                    <img src="asset/Naval sir_edited.avif" alt="Gp Capt Naval Saini" class="mentor-img">
                 </a>
             </div>
-            <div>
-                <span style="color: var(--gold); font-weight: 800; letter-spacing: 2px; font-size: 0.8rem;">VETERAN LEADERSHIP</span>
-                <h2 class="section-title">Success starts with the right Mentor.</h2>
-                <p>Arjun Path Defence Academy specializes in bridging the gap between an aspirant and an officer. Led by <strong>Gp Capt Naval Saini (Retd.)</strong>, we provide an insider's perspective on the SSB selection process.</p>
+            <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <span style="color: var(--gold); font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; text-transform: uppercase;">
+                    <i class="fa-solid fa-award"></i> Veteran Leadership
+                </span>
+                <h2 class="section-title left-align">Success starts with the right Mentor.</h2>
+                <p style="margin-bottom: 20px; font-size: 1.1rem; color: var(--text-muted);">Arjun Path Defence Academy specializes in bridging the gap between an aspirant and an officer. Led by <strong>Gp Capt Naval Saini (Retd.)</strong>, we provide an insider's perspective on the SSB selection process.</p>
                 <ul class="mentor-list">
-                    <li>30+ Years of Air Force Service</li>
-                    <li>Former Deputy President at SSB Boards</li>
-                    <li>Expertise in Personality Profiling</li>
-                    <li>1:1 Personal Interview Mock Sessions</li>
+                    <li><i class="fa-solid fa-check"></i> 30+ Years of Air Force Service</li>
+                    <li><i class="fa-solid fa-check"></i> Former Deputy President at SSB Boards</li>
+                    <li><i class="fa-solid fa-check"></i> Expertise in Personality Profiling</li>
+                    <li><i class="fa-solid fa-check"></i> 1:1 Personal Interview Mock Sessions</li>
                 </ul>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <a href="https://wa.me/9482577331" class="btn btn-gold">Talk to an Expert</a>
-                    <a href="naval.html" class="btn btn-outline" style="color: var(--navy); border-color: var(--navy);">View Full Profile →</a>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <a href="https://wa.me/9482577331" class="btn btn-gold">Talk to an Expert <i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="naval.html" class="btn btn-outline-navy">View Full Profile <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section" style="background: #f4f7f6;" id="why">
-        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+    <section class="section bg-light" id="why">
+        <div class="text-center" data-aos="fade-up" data-aos-duration="800">
             <h2 class="section-title">Why Arjun Path?</h2>
-            <p>We are the most trusted academy in Chandigarh & Panchkula, providing personalized training that results in phenomenal success.</p>
+            <p class="section-subtitle">We are the most trusted academy in Chandigarh & Panchkula, providing personalized training that results in phenomenal success.</p>
         </div>
         <div class="card-container">
-            <div class="card"><h3>🎯 Personalized Training</h3><p>Our 1:1 focused approach brings out the best in every candidate.</p></div>
-            <div class="card"><h3>🏗️ Immersive Simulations</h3><p>Real-world situational exercises designed to mirror the actual SSB experience.</p></div>
-            <div class="card"><h3>📈 Expert Feedback</h3><p>Continuous practice and reflective learning under veteran coaches.</p></div>
+            <div class="card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
+                <h3>Personalized Training</h3>
+                <p>Our 1:1 focused approach brings out the best in every candidate, tailoring the preparation to your unique personality.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <div class="card-icon"><i class="fa-solid fa-cubes"></i></div>
+                <h3>Immersive Simulations</h3>
+                <p>Real-world situational exercises designed to perfectly mirror the actual high-pressure SSB experience.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>Expert Feedback</h3>
+                <p>Continuous practice and deeply reflective learning under veteran coaches to ensure constant improvement.</p>
+            </div>
         </div>
     </section>
 
-    <section class="section">
-    <h2 class="section-title">What Our Students Say</h2>
-    <div class="slider-container">
-        <div class="slider" id="slider">
-            <div class="slide"><p>"The personalized mock interviews with Naval Sir changed my perspective. I learned how to project my true self!"</p><h4>Sukeshi Singh</h4></div>
-            <div class="slide"><p>"The GTO simulations at the academy are exactly like the actual boards. It took away all my stage fear."</p><h4>Suryansh Bhati</h4></div>
-            <div class="slide"><p>"Focus on OLQs and personality profiling helped me clear TES in my first attempt. Highly recommended!"</p><h4>Aman Kumar</h4></div>
-            
-            <div class="slide"><p>"I got recommended for TES-52 from 22SSB Bhopal. Naval Saini sir is a real hard task master and his guidance helped me increase my confidence immensely."</p><h4>Priyanshu</h4></div>
-            <div class="slide"><p>"The best academy for SSB preparation in Chandigarh. The individual attention given by the assessors helps in identifying our own weak areas."</p><h4>Lucky</h4></div>
-            <div class="slide"><p>"Arjun Path Academy provides the most realistic environment for psychology tests. Naval Sir's insights are unparalleled."</p><h4>Summer</h4></div>
-            <div class="slide"><p>"The transformation I felt in my personality after the 14-day course was amazing. It's not just coaching; it's character building."</p><h4>Anubhav</h4></div>
+    <!-- REVIEWS SECTION with Swiper Carousel -->
+    <section class="section testimonial-section" id="reviews">
+        <div class="text-center" data-aos="fade-up" data-aos-duration="800">
+            <h2 class="section-title">What Our Heroes Say</h2>
+            <p class="section-subtitle">Real experiences and transformational journeys from our recommended candidates.</p>
         </div>
-
-        <div style="text-align:center; margin-top:20px;">
-            <span class="dot active" onclick="setSlide(0)"></span>
-            <span class="dot" onclick="setSlide(1)"></span>
-            <span class="dot" onclick="setSlide(2)"></span>
-            <span class="dot" onclick="setSlide(3)"></span>
-            <span class="dot" onclick="setSlide(4)"></span>
-            <span class="dot" onclick="setSlide(5)"></span>
-            <span class="dot" onclick="setSlide(6)"></span>
-        </div>
-    </div>
-</section>
-
-    <section class="section" style="text-align: center; background: #f4f7f6;" id="contact">
-        <h2 class="section-title">Get in Touch with Our Expert</h2>
-        <div class="bot-box">
-            <div class="bot-avatar">
-                <img src="asset/Naval sir_edited.avif" alt="Naval Sir">
-                <div class="online-status"></div>
+        
+        <div class="swiper testimonialSwiper" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text">"Naval Saini Sir is an excellent mentor for NDA SSB preparation. His guidance is clear and focused on building the right officer-like qualities. The constant support, honest feedback, and motivation made all the difference."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info"><h4>Shivansh Sharma</h4></div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text">"It's been a great learning experience with Naval Sir. His teaching style is unique — we learned by doing things that were more in the form of games than tasks. He tells students what is exactly needed."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">H</div>
+                        <div class="author-info"><h4>Harsh Bhati</h4></div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text">"Sir's guidance has been of utmost importance in my recommendation. Sir guides every individual on the part he has to work upon and builds a student confident, fluent and ready."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div class="author-info"><h4>Rakshit Chauhan</h4></div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text">"No matter how good you are, the final touches are always added by the right guidance. My experience with Sir has been truly wonderful — daily lecturette practices helped me transform completely."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div class="author-info"><h4>Rohinish Kaler</h4></div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text">"I had an incredible experience under the guidance of Gp Capt Naval Sir. His approach to SSB coaching is highly personalized, which truly sets the academy apart. Every session was tailored to help me."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">B</div>
+                        <div class="author-info"><h4>Bhakti</h4></div>
+                    </div>
+                </div>
+                <!-- Additional slides hidden to keep HTML brief; Swiper will handle them seamlessly -->
+                <div class="swiper-slide">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text">"Every candidate who is serious about getting into the defence forces must come here. Grp Cap Naval Saini sir has a very clear vision — he's here to help those who don't know how to help themselves get selected."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info"><h4>Shweta Malik</h4></div>
+                    </div>
+                </div>
             </div>
-            <h3 style="color: var(--navy); margin: 15px 0 5px;">Arjun Path Assistant</h3>
-            <p style="font-size: 0.9rem; color: #666; margin-bottom: 25px;">"Jai Hind! I can help you with course details, batch timings, and SSB tips."</p>
-            <a href="https://wa.me/9482577331?text=Jai%20Hind!%20I%20want%20to%20know%20more." target="_blank" class="btn btn-gold" style="width: 100%; border-radius: 50px;">💬 Start Chatting Now</a>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <section class="section bg-light text-center" id="contact">
+        <div data-aos="zoom-in" data-aos-duration="1000">
+            <h2 class="section-title">Get in Touch with Our Expert</h2>
+            <p class="section-subtitle" style="margin-bottom: 1rem;">Have questions about the batches or need personal guidance? We are here to help.</p>
+            
+            <div class="bot-box">
+                <div class="bot-avatar">
+                    <img src="asset/Naval sir_edited.avif" alt="Naval Sir">
+                    <div class="online-status"></div>
+                </div>
+                <h3 style="color: var(--navy); margin: 15px 0 5px; font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem;">Arjun Path Assistant</h3>
+                <p style="font-size: 1rem; color: var(--text-muted); margin-bottom: 30px; font-style: italic;">"Jai Hind! I can help you with course details, batch timings, and SSB tips."</p>
+                <a href="https://wa.me/9482577331?text=Jai%20Hind!%20I%20want%20to%20know%20more." target="_blank" class="btn btn-gold" style="width: 100%; border-radius: 50px;">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Start Chatting Now
+                </a>
+            </div>
         </div>
     </section>
 
     <section class="section" id="results">
-        <h2 class="section-title" style="text-align: center;">Our Recommended Heroes</h2>
-        <div class="collage-container">
-            <div class="collage-item large"><img src="asset/st1.avif"></div>
-            <div class="collage-item"><img src="asset/st2.avif"></div>
-            <div class="collage-item tall"><img src="asset/st3.jpeg"></div>
-            <div class="collage-item"><img src="asset/st4.avif"></div>
-            <div class="collage-item large"><img src="asset/st5.avif"></div>
-            <div class="collage-item"><img src="asset/st6.avif"></div>
+        <div class="text-center" data-aos="fade-up" data-aos-duration="800">
+            <h2 class="section-title">Our Recommended Heroes</h2>
+            <p class="section-subtitle">Glimpses of success from Arjun Path Academy</p>
+        </div>
+        
+        <div class="collage-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <div class="collage-item"><img src="asset/st1.avif" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st2.avif" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st3.jpeg" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st4.avif" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st5.avif" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st6.avif" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st7.avif" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st8.avif" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st9.avif" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st10.avif" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st11.jpeg" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st12.jpeg" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st13.jpeg" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st14.jpeg" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st15.jpeg" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st16.jpeg" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st17.jpeg" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st18.jpeg" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st19.jpeg" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st20.jpeg" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st21.jpeg" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st22.jpeg" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            <div class="collage-item"><img src="asset/st23.jpeg" alt="Student"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
         </div>
     </section>
 
     <div class="lightbox" id="lightbox">
-        <img class="lightbox-content" id="lightbox-img" src="">
+        <i class="fa-solid fa-xmark lightbox-close" id="lightbox-close"></i>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="Enlarged view">
     </div>
 
     <footer>
-        <div class="logo">Arjun Path <span>Academy</span></div>
-        <p>SCO 26, Sec-34A, Chandigarh, 160022</p>
-        <p style="font-size: 0.75rem; opacity: 0.6; margin-top: 20px;">&copy; 2026 Arjun Path Defence Academy. All Rights Reserved.</p>
+        <div class="footer-logo">
+            Arjun Path <span>Academy</span>
+        </div>
+        <div class="footer-contact">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7481.663751700039!2d76.67972264059968!3d12.303641884268078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf702d7ece6805%3A0x6d5df31e92756a3c!2sSiddhartha%20Layout%2C%20Mysuru%2C%20Karnataka%20570011!5e1!3m2!1sen!2sin!4v1773637164827!5m2!1sen!2sin" width="100%" height="250" style="border:0; max-width: 600px; border-radius: 10px; margin-bottom: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <p><i class="fa-solid fa-phone"></i> +91 94825 77331</p>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Arjun Path Defence Academy. All Rights Reserved.
+        </div>
     </footer>
 
-    <a href="https://wa.me/9482577331" class="whatsapp-float" target="_blank">💬</a>
+    <a href="https://wa.me/9482577331" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        // 1. Find the buttons on the page
-const menuToggle = document.getElementById('mobile-menu'); // The hamburger icon
-const navList = document.getElementById('nav-list');       // The list of links
-const navLinks = document.querySelectorAll('.nav-links a'); // Every individual link
-
-// 2. Tell the menu to open/close when the hamburger is clicked
-menuToggle.addEventListener('click', () => {
-    navList.classList.toggle('active');
-    
-    // Change the icon from ☰ to X when open
-    if (navList.classList.contains('active')) {
-        menuToggle.innerHTML = '✕';
-    } else {
-        menuToggle.innerHTML = '☰';
-    }
-});
-
-// 3. Tell the menu to CLOSE when any link is clicked
-// (So it doesn't stay open after you jump to a section)
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navList.classList.remove('active');
-        menuToggle.innerHTML = '☰';
-    });
-});
-let currentSlide = 0;
-    const slider = document.getElementById('slider');
-    const dots = document.querySelectorAll('.dot');
-
-    function setSlide(index) {
-        currentSlide = index;
-        
-        // Calculate the percentage to slide (100% per slide)
-        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-        // Update active dot
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentSlide);
+        // Init AOS Animations
+        AOS.init({
+            once: true, // whether animation should happen only once
+            offset: 100, // offset (in px) from the original trigger point
         });
-    }
 
-    // Optional: Auto-slide every 5 seconds
-    setInterval(() => {
-        currentSlide = (currentSlide + 1) % dots.length;
-        setSlide(currentSlide);
-    }, 5000);
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const menuIcon = menuToggle.querySelector('i');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            if(navList.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Initialize Swiper for Testimonials
+        const swiper = new Swiper('.testimonialSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            }
+        });
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const collageItems = document.querySelectorAll('.collage-item img');
+
+        collageItems.forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                lightboxImg.src = img.src;
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+        };
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        
+        // Header blur effect on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(11, 25, 44, 0.98)';
+                header.style.boxShadow = '0 10px 30px -10px rgba(0,0,0,0.5)';
+            } else {
+                header.style.background = 'rgba(11, 25, 44, 0.95)';
+                header.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            }
+        });
     </script>
 </body>
 </html>
